@@ -1,0 +1,37 @@
+nav{
+    background-color: rgb(67, 70, 255);      
+    padding: 10px;
+    text-align: center;
+}
+nav a{
+    font-size: 20px;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+}
+td, th{
+    padding: 5px;
+    padding-left: 20px;
+}
+footer{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    background-color: rgb(67, 70, 255);
+    color: white;
+}
+h2, h3, .formulario{
+    margin-left: 10px;
+}
+#id_oculto{
+    display: none;
+}
+.btn_filtrar{
+    font-size: 20px;
+    margin: 15px;
+    padding: 3px;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: rgb(226, 226, 226);
+}
