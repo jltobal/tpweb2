@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2021 a las 14:38:46
+-- Tiempo de generación: 21-11-2021 a las 16:04:18
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -39,13 +39,13 @@ CREATE TABLE `comentarios` (
 --
 
 INSERT INTO `comentarios` (`id_comentario`, `detalle`, `puntaje`, `id_impresora_fk`) VALUES
-(1, 'Buena impresora.', 0, 3),
-(2, 'Poco consumo de tinta.', 0, 3),
-(5, 'Buena calidad.', 0, 40),
-(6, 'No me gusto. Mucho ruido.', 0, 3),
-(22, 'Muy buen rendimiento', 0, 41),
-(33, 'Se traban las hojas', 0, 40),
-(34, 'Mala experiencia', 0, 40);
+(1, 'Buena impresora.', 2, 3),
+(2, 'Poco consumo de tinta.', 3, 3),
+(5, 'Buena calidad.', 4, 40),
+(6, 'No me gusto. Mucho ruido.', 1, 3),
+(22, 'Muy buen rendimiento', 5, 41),
+(33, 'Se traban las hojas', 1, 40),
+(34, 'Mala experiencia', 1, 40);
 
 -- --------------------------------------------------------
 
@@ -179,7 +179,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- AUTO_INCREMENT de la tabla `impresoras`
