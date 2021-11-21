@@ -23,19 +23,20 @@
                     <td>{$info->descripcion}</td>
                 </tr>
             {/foreach}
-
+          
             <tr>
-                <td><input type="hidden" id="id-coment" name="id_impresora" value={$info->id_impresora}></td>
-                <td><textarea name="coment" placeholder="Comentar"></textarea> </td>
-                <td><button id="btn-coment" class="btn_comentar" type="submit">Comentar</button></td>
-                <td><select name="puntaje" id="id_puntaje">
-                        <option disable>Calificar...</option>
+                <td> <label>Opiniones</label></td>
+                <td><textarea required="required" name="coment" cols="30" rows="1" placeholder="Comentar"></textarea> </td>
+                <td><label>Calificar</label>
+                <select name="puntaje" id="id_puntaje">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select></td>
+                    <td><button id="btn-coment" class="btn_comentar" type="submit">Comentar</button></td>
+                    <td><input type="hidden" id="id-coment" name="id_impresora" value={$info->id_impresora}></td>
             </tr>
 
         </form>

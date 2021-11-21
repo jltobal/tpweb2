@@ -19,9 +19,9 @@ function getComentbyPrinter($parametro)
     return $impresora;
 }
 
-function insertComent($id_impresora, $comentario){
-    $query = $this->db_impresoras->prepare('INSERT INTO comentarios (detalle, id_impresora_fk) VALUES (?,?)');
-    $query->execute([$comentario, $id_impresora]);
+function insertComent($id_impresora, $comentario, $puntaje){
+    $query = $this->db_impresoras->prepare('INSERT INTO comentarios (detalle, puntaje, id_impresora_fk) VALUES (?,?,?)');
+    $query->execute([$comentario, $puntaje, $id_impresora]);
 }
 
 function deleteComent($id)

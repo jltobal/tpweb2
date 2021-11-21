@@ -6,7 +6,7 @@ let app = new Vue({
     el: "#app",
     data: {
         titulo: "Comentarios de usuarios",
-        subtitulo: "Esta pagina se renderiza con JS usando Vue.js",
+        calificacion:"Calificación:",
         comentarios: [],
     },
 
@@ -45,7 +45,11 @@ async function AddComentarios(e) {
     let comentario = {
         id_impresora: data.get('id_impresora'),
         coment: data.get('coment'),
+        puntaje: data.get('puntaje'),
+        
     }
+
+  
     try {
         let response = await fetch(API_URL + `/${id.value}`, {
             method: "POST",

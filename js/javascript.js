@@ -2,8 +2,9 @@ let select = document.querySelector("#selectMetodo");
 select.addEventListener("change", seleccionarMetodo);
 
 
-async function seleccionarMetodo(e) {
-    e.preventDefault();
+
+async function seleccionarMetodo() {
+    
     let metodo = select.value
     try {
         let respuesta = await fetch(`http://localhost/proyectos/TPE_Web2_Tudai_01/TPE_Web2_1/filtrado/${metodo}`);
