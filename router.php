@@ -1,12 +1,14 @@
 <?php
 
-require_once 'controller.php';
-require_once 'metodoController.php';
-require_once 'impresorasController.php';
-require_once 'authcontroller.php';
-require_once 'usuariosController.php';
-require_once 'model.php';
-require_once 'view.php';
+require_once 'controllers/controller.php';
+require_once 'controllers/metodoController.php';
+require_once 'controllers/impresorasController.php';
+require_once 'controllers/authcontroller.php';
+require_once 'controllers/usuariosController.php';
+require_once 'models/impresora.model.php';
+require_once 'models/metodo.model.php';
+require_once 'view/impresora.view.php';
+require_once 'api/api-coment.controller.php';
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 define('LOGIN', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/login');
@@ -18,10 +20,11 @@ if (!empty($_GET['action'])) {
 }
 
 $params = explode('/', $action);
-$controlador = new controller(); //creo un objeto o instacia de la clase Controller
+$controlador = new controller(); 
 $controladorMetodo = new metodoController();
 $controladorImpresoras = new impresorasController();
 $controladorusuarios = new UserController();
+
 
 switch ($params[0]) {
     case 'home':
@@ -71,7 +74,7 @@ switch ($params[0]) {
         $authController = new AuthController();
         $controladorImpresoras->eliminarImpresora($params[1]);
         break;
-        
+
         /*---------  Administrar Metodos ----------------*/
     case 'agregar_metodo':
         $authController = new AuthController();
@@ -91,13 +94,13 @@ switch ($params[0]) {
         $authController = new AuthController();
         $controladorusuarios->showUsuarios();
         break;
-    case 'cambiarRol':       
+    case 'cambiarRol':
         $controladorusuarios->editarUsuario();
         break;
-    case 'eliminarUser':    
-        $authController = new AuthController();   
+    case 'eliminarUser':
+        $authController = new AuthController();
         $controladorusuarios->eliminarUsuario($params[1]);
-        break;
+        break;   
     default:
         $controlador->showHome();  //Por defecto va al Home.
         break;

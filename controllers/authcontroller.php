@@ -1,8 +1,8 @@
 <?php
 
-require_once 'model.php';
-require_once 'authhelper.php';
-require_once 'view.php';
+require_once 'models/user.model.php';
+require_once 'helper/authhelper.php';
+require_once 'view/impresora.view.php';
 
 class AuthController
 {
@@ -12,7 +12,7 @@ class AuthController
 
     public function __construct()
     {
-        $this->model = new model();
+        $this->model = new UserModel();
         $this->view = new view();
         $this->authHelper = new AuthHelper();
     }

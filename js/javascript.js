@@ -2,8 +2,8 @@ let select = document.querySelector("#selectMetodo");
 select.addEventListener("change", seleccionarMetodo);
 
 
-async function seleccionarMetodo() {
-    event.preventDefault();
+async function seleccionarMetodo(e) {
+    e.preventDefault();
     let metodo = select.value
     try {
         let respuesta = await fetch(`http://localhost/proyectos/TPE_Web2_Tudai_01/TPE_Web2_1/filtrado/${metodo}`);
@@ -20,3 +20,4 @@ async function seleccionarMetodo() {
         document.querySelector("#ajax-contenedor").innerHTML = "Error al solicitar";
     }
 }
+

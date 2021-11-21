@@ -12,16 +12,16 @@ class view
         $this->smarty = new Smarty();
     }
 
-    public function renderHome($allPrinters)  //Muestra Home
+    public function renderHome($allPrinters)  
     {
         $this->smarty->assign('impresora', $allPrinters);
         $this->smarty->display('templates/home.tpl');
     }
 
-    public function renderDetails($detalles)  //Arreglar mostrar detalles 
+    public function renderDetails($detalles)  
     {
         $this->smarty->assign('titulo', 'Detalles');
-        $this->smarty->assign('impresora', $detalles);
+        $this->smarty->assign('impresora', $detalles);              
         $this->smarty->display('templates/detalles.tpl');
     }
 
@@ -69,12 +69,7 @@ class view
         header('Location: ' . BASE_URL . 'usuarios');
     }
 
-    /*PENDIENTE DE BORRAR TEST 
-    public function test()
-    {
-        $this->smarty->display('templates/metodo.tpl');
-    }*/
-
+  
     public function renderUsers($users, $roles){
         $this->smarty->assign('usuarios', $users);
         $this->smarty->assign('roles', $roles);        
