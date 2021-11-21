@@ -1,14 +1,6 @@
 {include file = 'header.tpl'}
 
 <table class="list">
-
-    <tbody>
-
-
-    </tbody>
-</table>
-
-<table class="list">
     <tbody>
         <form id="form" class="form-coment" method="POST">
             <tr>
@@ -24,10 +16,15 @@
                 </tr>
             {/foreach}
           
+           
+              
             <tr>
-                <td> <label>Opiniones</label></td>
+            {if isset($smarty.session.USER_ID)}
+                  <td> <label>Opiniones</label></td>
+                
                 <td><textarea required="required" name="coment" cols="30" rows="1" placeholder="Comentar"></textarea> </td>
                 <td><label>Calificar</label>
+            
                 <select name="puntaje" id="id_puntaje">
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -36,17 +33,19 @@
                         <option value="5">5</option>
                     </select></td>
                     <td><button id="btn-coment" class="btn_comentar" type="submit">Comentar</button></td>
-                    <td><input type="hidden" id="id-coment" name="id_impresora" value={$info->id_impresora}></td>
+                {/if} <td><input type="hidden" id="id-coment" name="id_impresora" value={$info->id_impresora}></td>
+               
             </tr>
-
+       
         </form>
     </tbody>
 </table>
 
 
 
-
 {include file='vue/comentariosVue.tpl'}
+
+
 
 <script src="js/jscomentarios.js"></script>
 

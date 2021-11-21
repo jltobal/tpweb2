@@ -7,8 +7,9 @@ require_once 'controllers/authcontroller.php';
 require_once 'controllers/usuariosController.php';
 require_once 'models/impresora.model.php';
 require_once 'models/metodo.model.php';
-require_once 'view/impresora.view.php';
+/*require_once 'view/impresora.view.php';
 require_once 'api/api-coment.controller.php';
+*/
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 define('LOGIN', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/login');
