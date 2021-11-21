@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2021 a las 14:38:46
+-- Tiempo de generación: 19-11-2021 a las 02:25:09
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -24,32 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `comentarios`
---
-
-CREATE TABLE `comentarios` (
-  `id_comentario` int(11) NOT NULL,
-  `detalle` varchar(200) NOT NULL,
-  `puntaje` int(10) NOT NULL,
-  `id_impresora_fk` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf32;
-
---
--- Volcado de datos para la tabla `comentarios`
---
-
-INSERT INTO `comentarios` (`id_comentario`, `detalle`, `puntaje`, `id_impresora_fk`) VALUES
-(1, 'Buena impresora.', 0, 3),
-(2, 'Poco consumo de tinta.', 0, 3),
-(5, 'Buena calidad.', 0, 40),
-(6, 'No me gusto. Mucho ruido.', 0, 3),
-(22, 'Muy buen rendimiento', 0, 41),
-(33, 'Se traban las hojas', 0, 40),
-(34, 'Mala experiencia', 0, 40);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `impresoras`
 --
 
@@ -58,17 +32,18 @@ CREATE TABLE `impresoras` (
   `modelo` varchar(50) NOT NULL,
   `marca` varchar(50) NOT NULL,
   `descripcion` varchar(100) NOT NULL,
-  `id_metodo_fk` int(11) NOT NULL
+  `id_metodo_fk` int(11) NOT NULL,
+  `comentarios` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`comentarios`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32;
 
 --
 -- Volcado de datos para la tabla `impresoras`
 --
 
-INSERT INTO `impresoras` (`id_impresora`, `modelo`, `marca`, `descripcion`, `id_metodo_fk`) VALUES
-(3, 'LX300', 'Epson', 'Solo imprime en blanco y negro.', 2),
-(40, 'M651', 'Epson', 'Imprime color, escanea. ', 1),
-(41, 'M607', 'HP test 2', 'test', 1);
+INSERT INTO `impresoras` (`id_impresora`, `modelo`, `marca`, `descripcion`, `id_metodo_fk`, `comentarios`) VALUES
+(3, 'LX300', 'Epson', 'Solo imprime en blanco y negro.', 2, '0'),
+(40, 'M651', 'Epson', 'Imprime color, escanea. ', 1, '0'),
+(41, 'M607', 'HP test 2', 'test', 1, '0');
 
 -- --------------------------------------------------------
 
@@ -131,19 +106,11 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `email`, `password`, `id_rol_fk`) VALUES
 (55, 'user@test', '$2y$10$7OfozF0Vvy82QOY9LDcuJunhgeejsUVOyd9/3pgWmVvI6TMeZT9h6', 2),
 (64, 'admin@tudai', '$2y$10$fd/IcnY6yxDlFpMIczP4CeGK7fldtaz0OzoU6G1usERKytuqnGUp.', 1),
-(65, 'yo@vos', '$2y$10$Gv0Q4VrK.icWifmP2Tdr.uZaRHDpLwyxxTlEJXVhcdV2PlAxKUhQC', 2),
-(66, 'admin@tudai', '$2y$10$ahg7Gu2I9amkMYfKhsbMYOKmNytWPFYnBlUSYoAhK3DmJpAH8UHce', 2);
+(65, 'yo@vos', '$2y$10$Gv0Q4VrK.icWifmP2Tdr.uZaRHDpLwyxxTlEJXVhcdV2PlAxKUhQC', 2);
 
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `comentarios`
---
-ALTER TABLE `comentarios`
-  ADD PRIMARY KEY (`id_comentario`),
-  ADD KEY `id_impresora_fk` (`id_impresora_fk`);
 
 --
 -- Indices de la tabla `impresoras`
@@ -176,22 +143,16 @@ ALTER TABLE `usuarios`
 --
 
 --
--- AUTO_INCREMENT de la tabla `comentarios`
---
-ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
-
---
 -- AUTO_INCREMENT de la tabla `impresoras`
 --
 ALTER TABLE `impresoras`
-  MODIFY `id_impresora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id_impresora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `metodos`
 --
 ALTER TABLE `metodos`
-  MODIFY `id_metodo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id_metodo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -203,17 +164,11 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `comentarios`
---
-ALTER TABLE `comentarios`
-  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_impresora_fk`) REFERENCES `impresoras` (`id_impresora`);
 
 --
 -- Filtros para la tabla `impresoras`
