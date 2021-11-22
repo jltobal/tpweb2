@@ -1,16 +1,17 @@
 <?php
 require_once 'helper/authhelper.php';
 require_once 'controllers/authcontroller.php';
+require_once 'view/usuarios.view.php';
 
 class UserController
 {
-    private $model;
-    private $view;
+    private $usermodel;
+    private $userview;
 
     public function __construct()
     {
-        $this->view = new view();
-        $this->model = new UserModel();
+        $this->userview = new UserView();
+        $this->usermodel = new UserModel();
         $this->authHelper = new AuthHelper();
         $this->authController = new AuthController();
       
@@ -21,9 +22,9 @@ class UserController
         $this->authHelper->checkLoggedIn();
         $rol = $this->authHelper->checkRol();
         if ($rol) {
-            $users = $this->model->getAllUser();
-            $roles = $this->model->getAllRoles();
-            $this->view->renderUsers($users, $roles);
+            $users = $this->usermodel->getAllUser();
+            $roles = $this->usermodel->getAllRoles();
+            $this->userview->renderUsers($users, $roles);
         } else {
             echo "No tiene derechos de administrador";
         }
@@ -33,13 +34,13 @@ class UserController
     {
         $id_user = $_REQUEST['id_user'];
         $rol = $_REQUEST['select_rol'];
-        $this->model->editUser($id_user, $rol);
-        $this->view->refreshUsers();
+        $this->usermodel->editUser($id_user, $rol);
+        $this->userview->refreshUsers();
     }
 
     function eliminarUsuario($id)
     {
-        $this->model->deleteUserByID($id);
-        $this->view->refreshUsers();
+        $this->usermodel->deleteUserByID($id);
+        $this->userview->refreshUsers();
     }
 }

@@ -1,17 +1,18 @@
 <?php
 require_once 'helper/authhelper.php';
+require_once 'view/usuarios.view.php';
 
 class impresorasController
 {
 
-    private $model;
-    private $view;
+    private $impresoramodel;
+    private $userview;
     private $user;
 
     public function __construct()
     {
-        $this->view = new view();   //al atributo le instacio la clase View del View.php
-        $this->model = new ImpresoraModel();
+        $this->userview = new UserView();   //al atributo le instacio la clase View del View.php
+        $this->impresoramodel = new ImpresoraModel();
         $this->user = new AuthHelper();
         
     }
@@ -20,14 +21,13 @@ class impresorasController
 
     function agregarImpresora()
   
-    {
-       
+    {       
         $marca = $_REQUEST['marca'];
         $modelo = $_REQUEST['modelo'];
         $descripcion = $_REQUEST['descripcion'];
         $metodo = $_REQUEST['select_metodo'];
-        $this->model->createImpresora($marca, $modelo, $descripcion, $metodo);
-        $this->view->refreshAdmin();
+        $this->impresoramodel->createImpresora($marca, $modelo, $descripcion, $metodo);
+        $this->userview->refreshAdmin();
     }
 
     function editarImpresora()
@@ -37,16 +37,16 @@ class impresorasController
         $modelo = $_REQUEST['modelo'];
         $descripcion = $_REQUEST['descripcion'];
         $metodo = $_REQUEST['select_metodo'];
-        $this->model->editImpresora($id_impresora, $marca, $modelo, $descripcion, $metodo);
-        $this->view->refreshAdmin();
+        $this->impresoramodel->editImpresora($id_impresora, $marca, $modelo, $descripcion, $metodo);
+        $this->userview->refreshAdmin();
     }
 
     function eliminarImpresora($id)
     {
         $rol= $this->user->checkRol();
         if ($rol){
-        $this->model->deleteImpresoraByID($id);
-        $this->view->refreshAdmin();
+        $this->impresoramodel->deleteImpresoraByID($id);
+        $this->userview->refreshAdmin();
         }
         else{
             echo "Ud. no puede eliminar impresora";
