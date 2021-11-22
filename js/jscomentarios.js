@@ -6,7 +6,7 @@ let app = new Vue({
     el: "#app",
     data: {
         titulo: "Comentarios de usuarios",
-        calificacion:"Calificación:",
+        calificacion: "Calificación:",
         comentarios: [],
     },
 
@@ -16,8 +16,6 @@ let app = new Vue({
         }
     }
 })
-
-
 
 let form = document.querySelector("#form");
 form.addEventListener('submit', AddComentarios);
@@ -30,7 +28,7 @@ async function MostrarComentarios() {
         let response = await fetch(API_URL + `/${id.value}`);
         let nComentarios = await response.json();
         app.comentarios = nComentarios;
-           }
+    }
     catch (error) {
         console.log(error);
     }
@@ -46,10 +44,7 @@ async function AddComentarios(e) {
         id_impresora: data.get('id_impresora'),
         coment: data.get('coment'),
         puntaje: data.get('puntaje'),
-        
     }
-
-  
     try {
         let response = await fetch(API_URL + `/${id.value}`, {
             method: "POST",
@@ -60,11 +55,10 @@ async function AddComentarios(e) {
         });
 
         if (response.ok) {
-            /*    let dato = await response.json();
-                console.log(dato);
-                app.comentarios.push(dato);*/
-            MostrarComentarios();
-
+            console.log(response);
+            let dato = await response.json();
+            console.log(dato);
+            app.comentarios.push(dato);
         }
 
     } catch (e) {

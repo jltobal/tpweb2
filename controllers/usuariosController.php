@@ -13,10 +13,12 @@ class UserController
         $this->model = new UserModel();
         $this->authHelper = new AuthHelper();
         $this->authController = new AuthController();
+      
     }
 
     public function showUsuarios()
     {
+        $this->authHelper->checkLoggedIn();
         $rol = $this->authHelper->checkRol();
         if ($rol) {
             $users = $this->model->getAllUser();
@@ -27,7 +29,7 @@ class UserController
         }
     }
 
-    public function editarUsuario()
+   function editarUsuario()
     {
         $id_user = $_REQUEST['id_user'];
         $rol = $_REQUEST['select_rol'];

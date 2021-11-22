@@ -2,7 +2,6 @@ let select = document.querySelector("#selectMetodo");
 select.addEventListener("change", seleccionarMetodo);
 
 
-
 async function seleccionarMetodo() {
     
     let metodo = select.value

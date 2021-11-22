@@ -15,15 +15,34 @@ class AuthHelper
         $_SESSION['USER_ID'] = $user->id;
         $_SESSION['USER_EMAIL'] = $user->email;
         $_SESSION['USER_ROL'] = $user->id_rol_fk;
+        $_SESSION['LAST_ACTIVITY'] = time();
     }
-
-    public function checkLoggedIn()
-    {
-        if (empty($_SESSION['USER_ID'])) {  //Verifica sesion.
+    /*
+    public function checkLoggedIn() {
+        if (empty($_SESSION['USER_ID'])) {
             header("Location: " . LOGIN);
             die();
+                    }
+                }
+
+      */              
+    public function checkLoggedIn() {
+       
+        if(isset($_SESSION['USER_ID'])){ // si esta logueado
+            if (time() - $_SESSION['LAST_ACTIVITY'] > 1800) { // expiro el timeout 30 minutos
+                session_destroy();
+                header('Location: '. LOGIN);
+        die();
+            }
+
+            $_SESSION['LAST_ACTIVITY'] = time();
         }
+        else {
+            header('Location: '. LOGIN);
+            die();
+          }
     }
+    
 
     public function checkRol()
     {
@@ -40,5 +59,6 @@ class AuthHelper
     {
         session_destroy();
         header("Location: " . BASE_URL . 'home');
+        die();
     }
 }

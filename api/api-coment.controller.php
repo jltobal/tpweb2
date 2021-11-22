@@ -23,16 +23,14 @@ class ApiTaskController
         $data = $this->getBody();
         $comentario = $data->coment;
         $puntaje = $data->puntaje;
-        $this->model->insertComent($id, $comentario, $puntaje);
-        $this->view->response($comentario, 200);
-        /*  
-        $comentarios = $this->model->getimpresorabyIdandComent($id);
-
+        $idComentario =$this->model->insertComent($id, $comentario, $puntaje);
+        $comentarios = $this->model->getComentbyID($idComentario);
+                  
         if ($comentarios)
         $this->view->response($comentarios, 200);
-    else
-        $this->view->response("La tarea no fue creada", 500);
-*/
+          else
+        $this->view->response("Comentario no creado", 500);
+    
     }
 
     function showImpresora($params = null)

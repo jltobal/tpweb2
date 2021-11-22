@@ -19,7 +19,7 @@ class controller
         $this->metodomodel = new MetodoModel();
         $this->modelUser = new UserModel();
         $this->authHelper = new AuthHelper();
-        $this->authController = new AuthController();
+        $this->authController = new AuthController();        
     }
 
     /*-------------- Render de Views ---------------*/
@@ -32,6 +32,7 @@ class controller
 
     function showDetails()
     {
+             
         $id = $_REQUEST['id'];
         $detalles = $this->modelimpresora->getPrinterByID($id);  //llamo por id a la db.
         $this->view->renderDetails($detalles);          //tipo, modelo, dpi, toner, tinta.
@@ -53,10 +54,11 @@ class controller
 
     function showAdmin()
     {
+        
         $rol = $this->authHelper->checkRol();
 
-        if ($rol) {
-            $this->authHelper->checkLoggedIn();
+        if ($rol) {   
+            $this->authHelper->checkLoggedIn();       
             $impresoras = $this->modelimpresora->getAllPrinters();
             $metodos = $this->metodomodel->getAllMetodos();
             $this->view->renderAdmin($impresoras, $metodos);   //agregar, borrar, editar.
@@ -66,7 +68,7 @@ class controller
     }
 
     function showRegister()
-    {
+    {       
         $this->view->renderRegister();
         if (!empty($_POST['email']) && !empty($_POST['password'])) {  //Verifico si los campos estan vacios o no.
             $userEmail = $_POST['email'];
